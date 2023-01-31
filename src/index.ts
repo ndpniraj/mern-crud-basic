@@ -3,17 +3,11 @@ import express from "express";
 // create a server
 const app = express();
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
+// this will parse post request coming from fetch.post() method
+app.use(express.json());
 
-app.use((req, res, next) => {
-  // read the data and we want to add that to req.body
-  req.on("data", (chunk) => {
-    // manipulate this here
-    req.body = JSON.parse(chunk);
-    next();
-  });
-});
+// this will parse post request coming from html form
+app.use(express.urlencoded({ extended: false }));
 
 app.post("/", (req, res) => {
   // here we need data so that we can create new note/todo
