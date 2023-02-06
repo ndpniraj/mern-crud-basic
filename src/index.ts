@@ -1,10 +1,13 @@
 import express from "express";
 import "./db";
+import cors from "cors";
 
 import noteRouter from "./routers/note";
 
 // create a server
 const app = express();
+
+app.use(cors());
 
 // this will parse post request coming from fetch.post() method
 app.use(express.json());
